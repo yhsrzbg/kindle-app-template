@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+project_dir=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 binary_name=$(python3 "$project_dir/scripts/app_config.py" get binary_name)
 
 command -v gdb >/dev/null 2>&1 || {

@@ -1,7 +1,7 @@
 #!/bin/sh
 set -eu
 
-project_dir=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
+project_dir=$(CDPATH='' cd -- "$(dirname -- "$0")/.." && pwd)
 target=${1:-kindlehf}
 toolchain_release=2026.08
 sdk_commit=b4a6c99d718a7cf74935f36105c62491b4336a61
