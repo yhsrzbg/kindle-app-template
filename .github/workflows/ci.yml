@@ -20,7 +20,7 @@ jobs:
       - name: Capture Kindle-sized GUI previews
         run: ./scripts/capture-previews.sh dist/previews legacy paperwhite-hd
       - name: Upload GUI previews
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: kindle-gui-previews
           path: dist/previews/*.png
