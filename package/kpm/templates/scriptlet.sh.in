@@ -1,0 +1,6 @@
+#!/bin/sh
+# Name: @APP_NAME@
+# Author: @APP_AUTHOR@
+# DontUseFBInk
+
+/var/local/kmc/bin/kpm launch @APP_ID@

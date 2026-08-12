@@ -1,0 +1,17 @@
+{
+  "id": "kindle_hello_world",
+  "name": "Kindle Hello World",
+  "binary_name": "kindle-hello-world",
+  "window_id": "org.kindlemodding.hello-world",
+  "version": [
+    1,
+    0,
+    0
+  ],
+  "author": "Kindle App Template contributors",
+  "description": "A minimal native GTK+ 2.0 application for jailbroken Kindle devices.",
+  "targets": [
+    "kindlehf",
+    "kindlepw2"
+  ]
+}

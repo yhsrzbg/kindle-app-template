@@ -1,0 +1,13 @@
+#!/bin/sh
+set -eu
+
+scriptlet="/mnt/us/documents/@BINARY_NAME@.sh"
+
+if [ -e "$scriptlet" ] && ! cmp -s "$scriptlet" "./scriptlets/@BINARY_NAME@.sh"; then
+  echo "Refusing to overwrite an unrelated launcher: $scriptlet" >&2
+  exit 1
+fi
+
+cp "./scriptlets/@BINARY_NAME@.sh" "$scriptlet"
+chmod 755 "$scriptlet"
+echo "Application launcher installed."

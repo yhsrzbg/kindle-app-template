@@ -1,0 +1,10 @@
+#!/bin/sh
+set -eu
+
+scriptlet="/mnt/us/documents/@BINARY_NAME@.sh"
+
+if [ -f "$scriptlet" ] && cmp -s "$scriptlet" "./scriptlets/@BINARY_NAME@.sh"; then
+  rm -f "$scriptlet"
+fi
+rm -f "/tmp/@APP_ID@.pid"
+echo "Application launcher removed."

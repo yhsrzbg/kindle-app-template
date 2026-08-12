@@ -1,0 +1,13 @@
+/build/
+/builddir/
+/builddir_*/
+/dist/
+/tools/
+/.venv/
+__pycache__/
+*.py[cod]
+*.kpkg
+*.sha256
+.idea/
+.vscode/
+compile_commands.json

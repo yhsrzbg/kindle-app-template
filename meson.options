@@ -1,0 +1,6 @@
+option(
+  'static_libstdcpp',
+  type: 'boolean',
+  value: true,
+  description: 'Link libstdc++ statically for better Kindle firmware compatibility',
+)
