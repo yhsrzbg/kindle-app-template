@@ -52,10 +52,26 @@ sudo apt install g++ gdb libgtk2.0-dev meson ninja-build
 ./scripts/run-native.sh
 ```
 
-`run-native.sh` 会构建 debug 版本并打开窗口。需要断点和调用栈时运行：
+`run-native.sh` 默认使用 `paperwhite-hd` 的 `1072×1448` 客户区构建 debug 版本并
+打开窗口。可以选择目标设备预设或自定义分辨率：
 
 ```bash
-./scripts/debug-native.sh
+./scripts/run-native.sh --list-devices
+./scripts/run-native.sh --device paperwhite-early
+./scripts/run-native.sh --resolution 900x1200
+./scripts/run-native.sh --fullscreen
+```
+
+需要断点和调用栈时运行，调试命令接受相同的尺寸选项：
+
+```bash
+./scripts/debug-native.sh --device paperwhite-hd
+```
+
+批量生成所有内置设备尺寸的 GUI 截图：
+
+```bash
+make previews
 ```
 
 详细说明见 [PC 本地 GUI 开发与调试](docs/PC_DEBUG_ZH.md)。PC 调试可以快速验证
@@ -145,6 +161,7 @@ SOURCE_DATE_EPOCH=1710000000 ./scripts/package.sh kindlehf
 ```bash
 make run                         # PC GUI
 make debug                       # PC GDB
+make previews                    # 所有 Kindle 尺寸的 GUI 截图
 make package TARGET=kindlehf     # 交叉编译并打包
 make check TARGET=kindlehf       # 完整校验
 ```

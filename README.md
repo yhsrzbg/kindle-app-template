@@ -36,16 +36,31 @@ Customize the template:
   --author "Your Name"
 ```
 
-Build and open the GUI on a Linux desktop:
+Build and open the GUI using the default `paperwhite-hd` preview:
 
 ```sh
 ./scripts/run-native.sh
+```
+
+Select a device profile or an exact custom framebuffer size:
+
+```sh
+./scripts/run-native.sh --list-devices
+./scripts/run-native.sh --device paperwhite-early
+./scripts/run-native.sh --resolution 900x1200
 ```
 
 For source-level debugging:
 
 ```sh
 ./scripts/debug-native.sh
+```
+
+Generate screenshots for every built-in Kindle resolution with Xvfb and
+ImageMagick:
+
+```sh
+make previews
 ```
 
 ## Kindle build and package

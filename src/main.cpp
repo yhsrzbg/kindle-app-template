@@ -1,5 +1,7 @@
 #include <gtk-2.0/gtk/gtk.h>
 
+#include <cstdio>
+#include <cstdlib>
 #include <string>
 
 #include "app_config.hpp"
@@ -8,6 +10,14 @@ namespace {
 
 void on_exit_clicked(GtkWidget*, gpointer window) {
   gtk_widget_destroy(GTK_WIDGET(window));
+}
+
+bool preview_size(int* width, int* height) {
+  const char* value = std::getenv("KINDLE_PREVIEW_SIZE");
+  char trailing = '\0';
+  return value != nullptr &&
+         std::sscanf(value, "%dx%d%c", width, height, &trailing) == 2 &&
+         *width >= 320 && *width <= 4096 && *height >= 320 && *height <= 4096;
 }
 
 }  // namespace
@@ -19,8 +29,17 @@ int main(int argc, char* argv[]) {
   const std::string title =
       std::string("L:A_N:application_ID:") + APP_WINDOW_ID + "_PC:T";
   gtk_window_set_title(GTK_WINDOW(window), title.c_str());
-  gtk_window_set_default_size(GTK_WINDOW(window), 600, 800);
-  gtk_window_maximize(GTK_WINDOW(window));
+  int preview_width = 0;
+  int preview_height = 0;
+  if (preview_size(&preview_width, &preview_height)) {
+    gtk_window_set_default_size(GTK_WINDOW(window), preview_width, preview_height);
+  } else if (std::getenv("KINDLE_PREVIEW_FULLSCREEN") != nullptr) {
+    gtk_window_fullscreen(GTK_WINDOW(window));
+  } else {
+    // Kindle production mode: let the device window manager provide its real
+    // available screen area instead of compiling in a model-specific size.
+    gtk_window_maximize(GTK_WINDOW(window));
+  }
   gtk_container_set_border_width(GTK_CONTAINER(window), 36);
 
   GtkWidget* layout = gtk_vbox_new(FALSE, 24);

@@ -1,7 +1,7 @@
 TARGET ?= kindlehf
 BUILD_TYPE ?= release
 
-.PHONY: native run debug build package check
+.PHONY: native run debug previews build package check
 
 native:
 	./scripts/build.sh native debug
@@ -11,6 +11,9 @@ run:
 
 debug:
 	./scripts/debug-native.sh
+
+previews:
+	./scripts/capture-previews.sh
 
 build:
 	./scripts/build.sh $(TARGET) $(BUILD_TYPE)
